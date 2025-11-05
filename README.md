@@ -1,8 +1,6 @@
-# Quote-of-the-Day
-A calculator application that returns a relevant quote when its corresponding button is pushed.
+# Drama-Picker
+An app that helps track dramas watched and then randomly selects the next drama to watch from a website. 
 
+This project will feature a phone screen-like application where "buttons" will be shown with different options like "Watched Drama", "Drama Roulette", "Watching", "On Hold", and "Dropped". All of the buttons except "Drama Roulutte" will be lists where the user's input will be added to the lists and shown to the user. "Drama Roulette" will randomly pick dramas from the IMDb website and recommend them to the user.
 
-This project will feature a calculator-like application with no math functions. Instead, when a user clicks a button (Sunday-Saturday), a quote relating to that day will pop up. Lists labeled 'sunday_quotes'through 'saturday_quotes' will be called on when its corresponding button is pressed. A while loop will cause the next line in the string to appear until there are no more lines. At the point of no more lines, the seek will return to 0.
-The calculator will be larger than the average calculator given its long output.
-
-Edited by Alexis Yampierre
+Created by Fareedah Ashiru and Riley Heyward
