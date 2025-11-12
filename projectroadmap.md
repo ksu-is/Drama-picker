@@ -12,3 +12,5 @@ We also used the quote of the template.
 - [x] Run each repository (-Fareedah)
 - [x] Clone the repository (-Fareedah)
 - [ ] Document installation steps (-Riley)
+
+hello
