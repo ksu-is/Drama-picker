@@ -25,6 +25,11 @@ class Calculator(Frame):
         self.bind_buttons(master)
         self.grid()
         
+        self.watched_drama = []
+        self.watching = []
+        self.dropped = []
+        self.on_hold = []
+        
     def add_chr(self, char, btn=None):
         """
         Concatenates a character passed from a button press (or key type) 
@@ -181,25 +186,25 @@ class Calculator(Frame):
         self.mod_bttn = Button(self, text="%", width=9, height=3, command=lambda: self.add_chr('%'))
         self.mod_bttn.grid(row=4, column=2)
 
-        self.seven_bttn = Button(self, text="7", width=9, height=3, command=lambda: self.add_chr(7))
+        self.seven_bttn = Button(self, text="Watched Drama", width=9, height=3, command=lambda: self.add_chr(7))
         self.seven_bttn.grid(row=1, column=0)
 
-        self.eight_bttn = Button(self, text="8", width=9, height=3, command=lambda: self.add_chr(8))
+        self.eight_bttn = Button(self, text="Watching", width=9, height=3, command=lambda: self.add_chr(8))
         self.eight_bttn.grid(row=1, column=1)
 
         self.nine_bttn = Button(self, text="9", width=9, height=3, command=lambda: self.add_chr(9))
         self.nine_bttn.grid(row=1, column=2)
 
-        self.four_bttn = Button(self, text="4", width=9, height=3, command=lambda: self.add_chr(4))
+        self.four_bttn = Button(self, text="On Hold", width=9, height=3, command=lambda: self.add_chr(4))
         self.four_bttn.grid(row=2, column=0)
 
-        self.five_bttn = Button(self, text="5", width=9, height=3, command=lambda: self.add_chr(5))
+        self.five_bttn = Button(self, text="Dropped", width=9, height=3, command=lambda: self.add_chr(5))
         self.five_bttn.grid(row=2, column=1)
 
         self.six_bttn = Button(self, text="6", width=9, height=3, command=lambda: self.add_chr(6))
         self.six_bttn.grid(row=2, column=2)
 
-        self.one_bttn = Button(self, text="Fareedah", width=9, height=3, command=lambda: self.add_chr("Ashiru"))
+        self.one_bttn = Button(self, text="Drama Roulette", width=9, height=3, command=lambda: self.add_chr("Ashiru"))
         self.one_bttn.grid(row=3, column=0)
 
         self.two_bttn = Button(self, text="2", width=9, height=3, command=lambda: self.add_chr(2))
