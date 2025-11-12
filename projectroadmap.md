@@ -9,6 +9,6 @@ The code runs well, and we expect to use the basic structure for our project, wh
 We also used the quote of the template.
 
 - [ ] Find related repositories on Github (-Riley)
-- [ ] Run each repository (-Fareedah)
-- [ ] Clone the repository (-Fareedah)
+- [x] Run each repository (-Fareedah)
+- [x] Clone the repository (-Fareedah)
 - [ ] Document installation steps (-Riley)
