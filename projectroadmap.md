@@ -12,6 +12,6 @@ We also used the quote of the template.
 - [x] Run each repository (-Fareedah)
 - [x] Clone the repository (-Fareedah)
 - [ ] Document installation steps (-Riley)
-- [ ] Create list and input functions for respected funtion (-Fareedah)
+- [x] Create list and input functions for respected funtion (-Fareedah)
 - [ ] Import web and create randomized drama picks (-Riley)
-- [ ] Fix display to look nice (-Riley and Fareedah)
+- [x] Fix display to look nice (-Riley and Fareedah)
