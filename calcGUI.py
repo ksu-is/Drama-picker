@@ -30,6 +30,39 @@ class Calculator(Frame):
         self.dropped = []
         self.on_hold = []
         
+        
+    def show_list(self, list_data, title):
+        top =Toplevel(self)
+        top.title(title)
+        top.geometry("300x300")
+        
+        text_box = Text(top, width=40, height=15)
+        text_box.pack()
+        
+        if len(list_data) == 0:
+            text_box.insert(END, "No Items yet")
+        else:
+            for i in list_data:
+                text_box.insert(END, f"-{i}\n")  
+                
+    def get_input(self, list_data, title):  
+        top = Toplevel(self)
+        top.title(title)
+        top.geometry("300x200")
+        
+        label = Label(top, text = "Enter drama name: ")
+        label.pack()
+        
+        entry = Entry(top, width = 30)
+        entry.pacl()
+        
+        def save_value():
+            value = entry.get()
+            if value.strip():
+                list_data.appened(value)
+            top.destry()
+        Button(top, text = "Save", command = save_value.pack())
+        
     def add_chr(self, char, btn=None):
         """
         Concatenates a character passed from a button press (or key type) 
@@ -153,16 +186,8 @@ class Calculator(Frame):
         :return: None
         """
         
-        self.sin_bttn = Button(self, text="sin", width = 9, height = 3, command = lambda: self.add_chr('sin'))
-        self.sin_bttn.grid(row=2, column =6)
         
-        self.cos_bttn = Button(self, text="cos", width = 9, height = 3, command = lambda: self.add_chr('cos'))
-        self.cos_bttn.grid(row=3, column =6)
-        
-        self.tan_bttn = Button(self, text='tan', width = 9, height = 3, command = lambda: self.add_chr("tan"))
-        self.tan_bttn.grid(row=4, column =6)
-        
-        self.eq_bttn = Button(self, text="=", width=20, height=3, bg="lightgrey", command=lambda: self.calculate())
+        self.eq_bttn = Button(self, text="Enter", width=20, height=3, bg="lightgrey", command=lambda: self.calculate())
         self.eq_bttn.grid(row=4, column=4, columnspan=2)
 
         self.ac_bttn = Button(self, text='CE', width=9, height=3, command=lambda: self.clear_all())
@@ -174,38 +199,38 @@ class Calculator(Frame):
         self.add_bttn = Button(self, text="+", width=9, height=3, command=lambda: self.add_chr('+'))
         self.add_bttn.grid(row=4, column=3)
 
-        self.mult_bttn = Button(self, text="×", width=9, height=3, command=lambda: self.add_chr('×'))
-        self.mult_bttn.grid(row=2, column=3)
+        self.dropped_input_bttn = Button(self, text="Add Dropped", width=9, height=3, command=lambda: self.get_input(self.dropped, "Added to Dropped List"))
+        self.dropped_input_bttn.grid(row=2, column=3)
 
         self.sub_bttn = Button(self, text="-", width=9, height=3, command=lambda: self.add_chr('-'))
         self.sub_bttn.grid(row=3, column=3)
 
-        self.div_bttn = Button(self, text="÷", width=9, height=3, command=lambda: self.add_chr('/'))
-        self.div_bttn.grid(row=1, column=3)
+        self.dropped_bttn = Button(self, text="Dropped", width=9, height=3, command=lambda: self.show_list(self.dropped, "Dropped Dramas: "))
+        self.dropped_bttn.grid(row=1, column=3)
 
         self.mod_bttn = Button(self, text="%", width=9, height=3, command=lambda: self.add_chr('%'))
         self.mod_bttn.grid(row=4, column=2)
 
-        self.seven_bttn = Button(self, text="Watched Drama", width=9, height=3, command=lambda: self.add_chr(7))
-        self.seven_bttn.grid(row=1, column=0)
+        self.watched_drama_bttn = Button(self, text="Watched Drama", width=9, height=3, command=lambda: self.show_list(self.watched_drama, "Watched Dramas: "))
+        self.watched_drama_bttn.grid(row=1, column=0)
 
-        self.eight_bttn = Button(self, text="Watching", width=9, height=3, command=lambda: self.add_chr(8))
-        self.eight_bttn.grid(row=1, column=1)
+        self.watching_bttn = Button(self, text="Watching", width=9, height=3, command=lambda: self.show_list(self.watching, "Currently Watching: "))
+        self.watching_bttn.grid(row=1, column=1)
 
-        self.nine_bttn = Button(self, text="9", width=9, height=3, command=lambda: self.add_chr(9))
-        self.nine_bttn.grid(row=1, column=2)
+        self.on_hold_bttn = Button(self, text="On Hold", width=9, height=3, command=lambda: self.show_list(self.on_hold, "Dramas On Hold: "))
+        self.on_hold_bttn.grid(row=1, column=2)
 
-        self.four_bttn = Button(self, text="On Hold", width=9, height=3, command=lambda: self.add_chr(4))
-        self.four_bttn.grid(row=2, column=0)
+        self.watched_drama_input_bttn = Button(self, text="Add Watched Drama", width=9, height=3, command=lambda: self.get_input(self.watched_drama, "Added to Watched Drama List"))
+        self.watched_drama_input_bttn.grid(row=2, column=0)
 
-        self.five_bttn = Button(self, text="Dropped", width=9, height=3, command=lambda: self.add_chr(5))
-        self.five_bttn.grid(row=2, column=1)
+        self.watched_drama_bttn = Button(self, text="Add Watching", width=9, height=3, command=lambda: self.get_input(self.watching, "Added to Watching List"))
+        self.watched_drama_bttn.grid(row=2, column=1)
 
-        self.six_bttn = Button(self, text="6", width=9, height=3, command=lambda: self.add_chr(6))
-        self.six_bttn.grid(row=2, column=2)
+        self.on_hold_input_bttn = Button(self, text="Add On Hold", width=9, height=3, command=lambda: self.get_input(self.on_hold, "Added to On Hold List"))
+        self.on_hold_input_bttn.grid(row=2, column=2)
 
-        self.one_bttn = Button(self, text="Drama Roulette", width=9, height=3, command=lambda: self.add_chr("Ashiru"))
-        self.one_bttn.grid(row=3, column=0)
+        self.drama_roulette_bttn = Button(self, text="Drama Roulette", width=9, height=3, command=lambda: self.add_chr("Ashiru"))
+        self.drama_roulette_bttn.grid(row=3, column=0)
 
         self.two_bttn = Button(self, text="2", width=9, height=3, command=lambda: self.add_chr(2))
         self.two_bttn.grid(row=3, column=1)
@@ -233,6 +258,6 @@ class Calculator(Frame):
 
 root = Tk()
 root.geometry()
-root.title("Exciting GUI Calculator")
+root.title("Drama Picker")
 app = Calculator(root)
 root.mainloop()
