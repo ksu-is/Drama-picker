@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 
 OUTPUT_FILE = "dramas.json"
 IMDB_URL = "https://www.imdb.com"
-HEADERS = {"User-Agent": "DramaPickerBot/1.0"}
+HEADERS = {"User-Agent": "DramaPickerBot/1.0" "(+https://www.imdb.com)"}
 
 
 def fetch_html(url: str, timeout: int = 15) -> Optional[str]:
