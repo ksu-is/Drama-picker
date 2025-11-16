@@ -1,4 +1,3 @@
-# Skipping the import section for now will go back and do that after fuctions are done
 
 from typing import List, Dict, Optional
 import json
@@ -15,9 +14,7 @@ HEADERS = {"User-Agent": "DramaPickerBot/1.0"}
 
 
 def fetch_html(url: str, timeout: int = 15) -> Optional[str]:
-    """
-    Fetch HTML using the curl command (subprocess). Returns the page HTML or None on error.
-    """
+
     try:
         # -s: silent, -S: show errors, -L: follow redirects, --max-time uses seconds
         proc = subprocess.run(
@@ -46,4 +43,13 @@ def save_output(data: Dict, movies_path: str = "movies.txt", tv_path: str = "tvs
                 genres = ", ".join(item.get("genres", []))
                 watched = "yes" if item.get("watch") else "no"
                 mf.write(f"{title} | {url} | {genres} | {watched}\n")
-        
+        with open(tv_path, "w", encoding="utf-8") as tf:
+            for item in data.get("tv_shows", []):
+                title = item.get("title", "")
+                url = item.get("url", "")
+                genres = ",".join(item.get("genres", []))
+                watched = "yes" if item.get("watch") else "no"
+                tf.write(f"{title} | {url} | {genres} | {watched}\n")
+        print(f"Saved movies to {movies_path} and tv shows to {tv_path}")
+    except Exception as e:
+        print("Save error:", e)
