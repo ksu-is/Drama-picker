@@ -46,4 +46,4 @@ def save_output(data: Dict, movies_path: str = "movies.txt", tv_path: str = "tvs
                 genres = ", ".join(item.get("genres", []))
                 watched = "yes" if item.get("watch") else "no"
                 mf.write(f"{title} | {url} | {genres} | {watched}\n")
-            
+        
