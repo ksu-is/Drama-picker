@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 OUTPUT_FILE = "dramas.json"
 IMDB_URL = "https://www.imdb.com"
-HEADERS = {"User-Agent": "DramaPickerBot/1.0 (+https://example.com)"}
+HEADERS = {"User-Agent": "DramaPickerBot/1.0"}
 
 
 def fetch_html(url: str, timeout: int = 15) -> Optional[str]:
@@ -33,3 +33,17 @@ def fetch_html(url: str, timeout: int = 15) -> Optional[str]:
     except Exception as e:
         print("Fetch error:", e)
         return None
+    
+def save_output(data: Dict, movies_path: str = "movies.txt", tv_path: str = "tvshows.txt") -> None:
+    """
+    Save the output data to text files.
+    """
+    try:
+        with open(movies_path, "w", encoding="utf-8") as mf:
+            for item in data.get("movies", []):
+                title = item.get("title", "")
+                url = item.get("url", "")
+                genres = ", ".join(item.get("genres", []))
+                watched = "yes" if item.get("watch") else "no"
+                mf.write(f"{title} | {url} | {genres} | {watched}\n")
+            
