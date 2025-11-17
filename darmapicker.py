@@ -88,7 +88,7 @@ class Calculator(Frame):
         self.on_hold_input_bttn.grid(row=2, column=2)
 
         self.drama_roulette_bttn = Button(self, text="Drama Roulette", width=12, height=3, command=lambda: self.show_list(self.watched_drama, "CHANGE TO RANDOM DRAMA"))
-        self.drama_roulette_bttn.grid(row=3, column=3)
+        self.drama_roulette_bttn.grid(row=3, column=0)
 
 
 
