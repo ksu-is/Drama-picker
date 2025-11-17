@@ -8,10 +8,10 @@ The code runs well, and we expect to use the basic structure for our project, wh
 
 We also used the quote of the template.
 
-- [ ] Find related repositories on Github (-Riley)
+- [x] Find related repositories on Github (-Riley)
 - [x] Run each repository (-Fareedah)
 - [x] Clone the repository (-Fareedah)
-- [ ] Document installation steps (-Riley)
+- [x] Document installation steps (-Riley)
 - [x] Create list and input functions for respected funtion (-Fareedah)
-- [ ] Import web and create randomized drama picks (-Riley)
+- [x] Import web and create randomized drama picks (-Riley)
 - [x] Fix display to look nice (-Riley and Fareedah)
