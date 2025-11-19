@@ -16,8 +16,8 @@ def get_top_tv_shows(n=50):
     Fetch top n TV shows from IMDb using IMDbPY
     Returns a list of dictionaries with metadata
     """
-    ia = IMDb()
-    top_shows = ia.get_top50_tv()  # IMDbPY provides top 50 TV shows
+    rr = IMDb()
+    top_shows = rr.get_top50_tv()  # IMDbPY provides top 50 TV shows
     
     tv_data = []
     for show in top_shows[:n]:
