@@ -9,8 +9,8 @@ from bs4 import BeautifulSoup
 
 
 OUTPUT_FILE = "dramas.json"
-IMDB_URL = "https://www.imdb.com"
-HEADERS = {"User-Agent": "DramaPickerBot/1.0" "(+https://www.imdb.com)"}
+IMDB_URL = "https://www.imdb.com/chart/toptv/"
+HEADERS = {"User-Agent": "DramaPickerBot/1.0" "(+https://www.imdb.com/chart/toptv/)"}
 
 
 def fetch_html(url: str, timeout: int = 15) -> Optional[str]:
@@ -53,3 +53,11 @@ def save_output(data: Dict, movies_path: str = "movies.txt", tv_path: str = "tvs
         print(f"Saved movies to {movies_path} and tv shows to {tv_path}")
     except Exception as e:
         print("Save error:", e)
+        
+        
+# default output file paths used by save_output and for simple printing
+movies_path = "movies.txt"
+tv_path = "tvshows.txt"
+
+print(movies_path, "Movies List:")
+print(tv_path, "TV Shows List:")
