@@ -1,11 +1,4 @@
-# Install imdbpy if not already installed
-# pip install imdbpy
-try:
-    from imdb import IMDb
-except ModuleNotFoundError:
-    import sys
-    print("IMDbPY package 'imdb' not found. Install it with: pip install imdbpy")
-    sys.exit(1)
+from imdb import IMDb
 
 # -------------------------
 # FUNCTIONS
@@ -18,10 +11,11 @@ def get_top_tv_shows(n=50):
     """
     ia = IMDb()
     top_shows = ia.get_top50_tv()  # IMDbPY provides top 50 TV shows
-    
+
     tv_data = []
-    for show in top_shows[:n]:
+    for idx, show in enumerate(top_shows[:n], start=1):
         tv_data.append({
+            "Number": idx,
             "Title": show.get('title', 'N/A'),
             "Year": show.get('year', 'N/A'),
             "Rating": show.get('rating', 'N/A'),
@@ -32,8 +26,8 @@ def get_top_tv_shows(n=50):
 
 def display_list(data):
     """Display numbered list of TV shows"""
-    for i, item in enumerate(data, start=1):
-        print(f"{i}. {item['Title']} ({item['Year']}) - Rating: {item['Rating']}")
+    for item in data:
+        print(f"{item['Number']}. {item['Title']} ({item['Year']}) - Rating: {item['Rating']}")
 
 def create_smaller_lists(data):
     """
@@ -41,7 +35,6 @@ def create_smaller_lists(data):
     Returns a dictionary of lists
     """
     groups = {}
-
     while True:
         group_name = input("\nEnter a new list name (or type END to finish): ")
         if group_name.lower() == "end":
@@ -56,48 +49,47 @@ def create_smaller_lists(data):
         try:
             chosen = [int(num.strip()) for num in selections.split(",")]
             for index in chosen:
-                if 1 <= index <= len(data):
-                    groups[group_name].append(data[index - 1])
-                else:
-                    print(f"Ignored invalid index: {index}")
+                for item in data:
+                    if item['Number'] == index:
+                        groups[group_name].append(item)
         except:
             print("Invalid input. Skipping this group.")
-    
+
     return groups
 
-def save_lists_to_files(main_list, groups):
+def save_lists_to_files(main_list, groups, filename_prefix="imdb_tv"):
     """Save main list and smaller lists to text files"""
-    
-    # Save main list
-    with open("top_tv_shows.txt", "w", encoding="utf-8") as f:
-        for tv in main_list:
-            for k, v in tv.items():
-                f.write(f"{k}: {v}\n")
+    main_filename = f"{filename_prefix}_main.txt"
+    with open(main_filename, "w", encoding="utf-8") as f:
+        for item in main_list:
+            for key, value in item.items():
+                f.write(f"{key}: {value}\n")
             f.write("-" * 50 + "\n")
+    print(f"Main list saved to {main_filename}")
 
-    # Save smaller groups
     for group_name, items in groups.items():
-        filename = f"{group_name.replace(' ', '_').lower()}.txt"
+        filename = f"{filename_prefix}_{group_name.replace(' ', '_').lower()}.txt"
         with open(filename, "w", encoding="utf-8") as f:
-            for tv in items:
-                for k, v in tv.items():
-                    f.write(f"{k}: {v}\n")
+            for item in items:
+                for key, value in item.items():
+                    f.write(f"{key}: {value}\n")
                 f.write("-" * 50 + "\n")
-
-    print("\nAll lists saved successfully!")
+        print(f"Group '{group_name}' saved to {filename}")
 
 # -------------------------
 # MAIN PROGRAM
 # -------------------------
+def main():
+    print("Fetching top IMDb TV shows...")
+    tv_list = get_top_tv_shows(n=50)
+    print(f"\nFetched {len(tv_list)} TV shows.\n")
+    display_list(tv_list)
 
-print("=== IMDb TV Show Metadata Collector ===")
-tv_list = get_top_tv_shows(n=50)
+    # Create smaller lists
+    groups = create_smaller_lists(tv_list)
 
-print(f"\nFetched {len(tv_list)} TV shows.\n")
-display_list(tv_list)
+    # Save all lists
+    save_lists_to_files(tv_list, groups, filename_prefix="imdb_tv")
 
-# Let user create smaller lists
-groups = create_smaller_lists(tv_list)
-
-# Save all lists to text files
-save_lists_to_files(tv_list, groups)
+if __name__ == "__main__":
+    main()
