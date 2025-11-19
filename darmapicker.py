@@ -63,7 +63,7 @@ class Calculator(Frame):
         
 
 
-        self.dropped_input_bttn = Button(self, text="Add Dropped", width=12, height=3, command=lambda: self.get_input(self.dropped, "Added to Dropped List"))
+        self.dropped_input_bttn = Button(self, text="Add Dropped", width=12, height=3, command=lambda: self.get_input(self.dropped, "Add to Dropped List"))
         self.dropped_input_bttn.grid(row=2, column=3)
 
         self.dropped_bttn = Button(self, text="Dropped", width=12, height=3, command=lambda: self.show_list(self.dropped, "Dropped Dramas: "))
@@ -78,17 +78,17 @@ class Calculator(Frame):
         self.on_hold_bttn = Button(self, text="On Hold", width=12, height=3, command=lambda: self.show_list(self.on_hold, "Dramas On Hold: "))
         self.on_hold_bttn.grid(row=1, column=2)
 
-        self.watched_drama_input_bttn = Button(self, text="Add Watched Drama", width=12, height=3, command=lambda: self.get_input(self.watched_drama, "Added to Watched Drama List"))
+        self.watched_drama_input_bttn = Button(self, text="Add Watched Drama", width=12, height=3, command=lambda: self.get_input(self.watched_drama, "Add to Watched Drama List"))
         self.watched_drama_input_bttn.grid(row=2, column=0)
 
-        self.watched_drama_bttn = Button(self, text="Add Watching", width=12, height=3, command=lambda: self.get_input(self.watching, "Added to Watching List"))
+        self.watched_drama_bttn = Button(self, text="Add Watching", width=12, height=3, command=lambda: self.get_input(self.watching, "Add to Watching List"))
         self.watched_drama_bttn.grid(row=2, column=1)
 
-        self.on_hold_input_bttn = Button(self, text="Add On Hold", width=12, height=3, command=lambda: self.get_input(self.on_hold, "Added to On Hold List"))
+        self.on_hold_input_bttn = Button(self, text="Add On Hold", width=12, height=3, command=lambda: self.get_input(self.on_hold, "Add to On Hold List"))
         self.on_hold_input_bttn.grid(row=2, column=2)
 
         self.drama_roulette_bttn = Button(self, text="Drama Roulette", width=12, height=3, command=lambda: self.show_list(self.watched_drama, "CHANGE TO RANDOM DRAMA"))
-        self.drama_roulette_bttn.grid(row=3, column=3)
+        self.drama_roulette_bttn.grid(row=3, column=0)
 
 
 
